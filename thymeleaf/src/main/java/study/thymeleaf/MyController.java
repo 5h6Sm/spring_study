@@ -39,5 +39,28 @@ public class MyController {
 // ModelAndView 객체 반환
         return mav;
     }
+    @GetMapping("/template3")
+    public String template3(Model m) {
+        m.addAttribute("condition1", true);
+        m.addAttribute("condition2", false);
+        Book book = new Book("김철수", "부자되는 방법", 10000);
+        book.setSale(true);
+        book.setSaleAmount(0.3);
+        m.addAttribute("book", book);
+        List<Book> bookList = new ArrayList<>();
+        bookList.add(new Book("김철수", "부자되는 방법 1", 10000));
+        bookList.add(new Book("김철수", "부자되는 방법 2", 20000, true, 0.2));
+        bookList.add(new Book("김철수", "부자되는 방법 3", 30000));
+        bookList.add(new Book("김철수", "부자되는 방법 4", 40000, true, 0.3));
+        m.addAttribute("book_list", bookList);
+        Map<String, Book> bookMap = new HashMap<>();
+        bookMap.put("book1", new Book("김철수", "부자되는 방법 1", 10000));
+        bookMap.put("book2", new Book("김철수", "부자되는 방법 2", 20000, true, 0.2));
+        bookMap.put("book3", new Book("김철수", "부자되는 방법 3", 30000));
+        bookMap.put("book4", new Book("김철수", "부자되는 방법 4", 40000, true, 0.3));
+        m.addAttribute("book_map", bookMap);
+        m.addAttribute("grade", "A");
+        return "template3";
+    }
 
 }
